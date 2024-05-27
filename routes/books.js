@@ -12,13 +12,25 @@ const getBooks = ()=>{
     return JSON.parse(data);
 
 };
+
 // defining a route handler for  GET request to the route URL
 router.get('/', (req, res) => {
        const books = getBooks();
     res.render('index',{books});
 });
-
-
+// get output for JSON
+router.get('/', (req, res) => {
+    const links = [
+      {
+        href: 'booksData/:id',
+        rel: ':id',
+        type: 'GET',
+      },
+    ];
+  
+    res.json({ booksData, links });
+  });
+  
 // Add a new book using POST
 router.post('/', (req, res) => {
     const { title, author, price } = req.body;

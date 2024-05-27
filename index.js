@@ -17,11 +17,11 @@ app.set('views', path.join(__dirname, 'views'));
  app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(loggerMiddleware);
-// Routes
+// Routes for View 
 app.use('/books', booksRouter);
-// error handling middleware
+app.use('/api/v1',booksRouter);
 
-//error
+
 const error = require("./utilities/error");
 
 //set view engine ejs as our template engine

@@ -1,0 +1,10 @@
+createed new Directory and Initialized Git repo
+installed nodemon packages
+installed node packages
+installed express
+changed script start and dev
+created a git ignore file and put node_modules in it.
+defined a route handler for  GET request to the route URL in my books rotes
+Added a new book using POST method
+used Delete method to delete post
+used data folders to create or generate and store <data value=""></data>
