@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "The Whispering Woods",
+      "author": "Jane Harper",
+      "price": 10.99
+    },
+    {
+      "id": 2,
+      "title": "A Journey Beyond Time",
+      "author": "Samuel T. Carter",
+      "price": 12.50
+    },
+    {
+      "id": 3,
+      "title": "The Art of Serenity",
+      "author": "Olivia Zhang",
+      "price": 9.75
+    },
+    {
+      "id": 4,
+      "title": "Wings of Fire",
+      "author": "Tui T. Sutherland ",
+      "price": 9.99
+    }
+  ]
+  

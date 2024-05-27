@@ -1,15 +1,25 @@
 // routes/books.js
 const express = require('express');
+const fs= require('fs');
 const router = express.Router();
+const path = require('path');
 const booksData = require('../data/books');
+const booksFilePath = path.join(__dirname,'../data/books.json')
 
-// Get all books
-router.get('/books', (req, res) => {
-    res.json(booksData);
+// Get all books usingGET
+const getBooks = ()=>{
+    const data = fs.readFileSync(booksFilePath);
+    return JSON.parse(data);
+
+};
+// defining a route handler for  GET request to the route URL
+router.get('/', (req, res) => {
+       const books = getBooks();
+    res.render('index',{books});
 });
 
 
-// Add a new book
+// Add a new book using POST
 router.post('/', (req, res) => {
     const { title, author, price } = req.body;
     const newBook = {
@@ -22,7 +32,7 @@ router.post('/', (req, res) => {
     res.status(201).json(newBook);
 });
 
-// Delete a book
+// Delete a book using DELETE
 router.delete('/:id', (req, res) => {
     const bookId = parseInt(req.params.id);
     const index = booksData.findIndex(book => book.id === bookId);
