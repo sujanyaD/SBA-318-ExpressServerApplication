@@ -28,7 +28,7 @@ router.get('/:id',(req,res)=>{
         res.status(404).json({message: 'Book not found'});
     }
 })
-// Add new book
+// Add new book By POST Method
 router.post('/add', (req, res) => {
     const books = getBooks();
     const newBook = {
@@ -41,6 +41,7 @@ router.post('/add', (req, res) => {
     fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
     res.redirect('/books');
 });
+
 router.post('/', (req, res) => {
     const { title, author, price } = req.body;
     const newBook = {
@@ -53,15 +54,22 @@ router.post('/', (req, res) => {
     res.status(201).json(newBook);
 });
 // Delete a book using DELETE
-router.delete('/:id', (req, res) => {
-    const bookId = parseInt(req.params.id);
-    const index = booksData.findIndex(book => book.id === bookId);
-    if (index !== -1) {
-        booksData.splice(index, 1);
-        res.status(204).send();
-    } else {
-        res.status(404).send('Book not found');
-    }
+router.post('/delete/:id', (req, res) => {
+    let books = getBooks();
+    books = books.filter(b => b.id != req.params.id);
+    fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+    res.redirect('/books');
 });
+
+// router.delete('/:id', (req, res) => {
+//     const bookId = parseInt(req.params.id);
+//     const index = booksData.findIndex(book => book.id === bookId);
+//     if (index !== -1) {
+//         booksData.splice(index, 1);
+//         res.status(204).send();
+//     } else {
+//         res.status(404).send('Book not found');
+//     }
+// });
 
 module.exports = router;
