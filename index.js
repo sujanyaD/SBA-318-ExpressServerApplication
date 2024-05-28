@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 // app.use(loggerMiddleware);
 // Routes for View 
-app.use('/books', booksRouter);
+app.use('/api/books', booksRouter);
 app.use('/api/v1',booksRouter);
 
 
