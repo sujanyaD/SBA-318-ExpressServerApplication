@@ -39,7 +39,7 @@ router.post('/add', (req, res) => {
     };
     books.push(newBook);
     fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
-    res.redirect('/books');
+    res.redirect('/api/books');
 });
 
 router.post('/', (req, res) => {
@@ -53,23 +53,13 @@ router.post('/', (req, res) => {
     booksData.push(newBook);
     res.status(201).json(newBook);
 });
-// Delete a book using DELETE
+// Delete a book using DELETE Method
 router.post('/delete/:id', (req, res) => {
     let books = getBooks();
     books = books.filter(b => b.id != req.params.id);
     fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
-    res.redirect('/books');
+    res.redirect('/api/books');
 });
 
-// router.delete('/:id', (req, res) => {
-//     const bookId = parseInt(req.params.id);
-//     const index = booksData.findIndex(book => book.id === bookId);
-//     if (index !== -1) {
-//         booksData.splice(index, 1);
-//         res.status(204).send();
-//     } else {
-//         res.status(404).send('Book not found');
-//     }
-// });
 
 module.exports = router;

@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/books', booksRouter);
 app.use('/api/v1',booksRouter);
 
-
 const error = require("./utilities/error");
 
 //set view engine ejs as our template engine
