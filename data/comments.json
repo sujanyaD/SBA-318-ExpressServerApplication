@@ -1,0 +1,23 @@
+
+     [
+      {
+        "comment_id": 1,
+        "book_id": 12345,
+        "comment_text": "I absolutely loved this book! The characters were so well-developed, and the plot kept me hooked until the very end.",
+        "rating": 5
+      },
+      {
+        "comment_id": 2,
+        "book_id": 12345,
+        "comment_text": "I found this book to be quite disappointing. The story felt predictable, and the characters lacked depth.",
+        "rating": 2
+      },
+      {
+        "comment_id": 3,
+        "book_id": 54321,
+        "comment_text": "This book was okay. It had some interesting moments, but overall, it didn't leave a lasting impression on me.",
+        "rating": 3
+      }
+    ]
+  
+  
