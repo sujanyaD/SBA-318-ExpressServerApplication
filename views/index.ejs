@@ -10,7 +10,7 @@
     <h1>All Books</h1>
     <ul>
         <% books.forEach(book => { %>
-            <li><%= book.title %> by <%= book.author %> - $<%= book.price %></li>
+            <li><%= book.id %></li><li><%= book.title %> by <%= book.author %> - $<%= book.price %></li>
         <% }); %>
     </ul>
     
@@ -25,10 +25,34 @@
         <button type="submit">Add Book</button>
         <!-- <button type="Delete">Add Book</button> -->
     </form><br><br>
-    <form action="/delete/id">
+    <h2>Remove a Book by Id</h2>
+    <form id="deleteActionForm">
         <label for="bookid">BookID:</label>
         <input type="text" id="bookid" name="bookid" required><br>
-        <button type="Delete">RemoveBook</button>
+        <button type="submit">RemoveBook</button>
     </form>
+    <script>
+        document.getElementById('deleteActionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get the resource ID from the form input
+            const resourceId = document.getElementById('bookid').value;
+            // Send a DELETE request to the server
+            fetch(`/api/books/delete/${resourceId}`, {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Resource deleted successfully');
+                    // Redirect to another page after successful deletion
+                    window.location.href = '/api/books'; // Change 'success.html' to your desired URL
+                } else {
+                    console.error('Failed to delete resource');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>

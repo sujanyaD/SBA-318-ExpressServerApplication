@@ -6,5 +6,10 @@ const loggerMiddleware = (req, res, next) => {
     next();
 };
 
-module.exports = loggerMiddleware;
+const errorHandler = (err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
+  };
+
+  module.exports = { loggerMiddleware, errorHandler };
 

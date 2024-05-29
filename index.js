@@ -5,7 +5,8 @@ const app = express();
 const path = require('path');
 const PORT = 5050;
 const booksRouter = require('./routes/books');
-const loggerMiddleware = require('./middleware/logger');
+const { loggerMiddleware, errorHandler } = require('./middleware/logger'); // Import middleware functions
+
 
 // Setting  EJS as the view engine
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -16,7 +17,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Middleware
  app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(loggerMiddleware);
+ app.use(loggerMiddleware);
+ app.use(errorHandler);
+
 // Routes for View 
 app.use('/api/books', booksRouter);
 app.use('/api/v1',booksRouter);
@@ -37,3 +40,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
